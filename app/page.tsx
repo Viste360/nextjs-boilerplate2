@@ -1,101 +1,107 @@
-import Image from "next/image";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Host Registration - Viste AI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <div class="form-container">
+        <h2>Host Registration – Automate Guest Communication with WhatsApp AI</h2>
+        <form id="hostForm">
+            
+            <h3>🛠️ Basic Information</h3>
+            <label>Full Name:</label>
+            <input type="text" name="fullName" required>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+            <label>Email:</label>
+            <input type="email" name="email" required>
+
+            <label>WhatsApp Number:</label>
+            <input type="text" name="whatsapp" required>
+
+            <label>Location (City & Country):</label>
+            <input type="text" name="location" required>
+
+            <h3>🏡 Rental Business Information</h3>
+            <label>How many properties do you manage?</label>
+            <select name="properties">
+                <option value="1-5">1-5</option>
+                <option value="6-10">6-10</option>
+                <option value="11-20">11-20</option>
+                <option value="21-50">21-50</option>
+                <option value="51+">51+</option>
+            </select>
+
+            <label>Which Channel Manager or platforms do you use?</label>
+            <select name="channelManager">
+                <option value="Icnea">Icnea</option>
+                <option value="Guesty">Guesty</option>
+                <option value="Smoobu">Smoobu</option>
+                <option value="Hostaway">Hostaway</option>
+                <option value="Rentals United">Rentals United</option>
+                <option value="Other">Other (Specify below)</option>
+            </select>
+
+            <label>If you selected "Other," please specify:</label>
+            <input type="text" name="otherCM">
+
+            <h3>💡 Messaging Needs</h3>
+            <label>What features would you like to automate?</label><br>
+            <input type="checkbox" name="features" value="Check-in & Check-out WhatsApp"> WhatsApp Check-in & Check-out Automation<br>
+            <input type="checkbox" name="features" value="AI FAQ Messaging"> AI FAQ Messaging<br>
+            <input type="checkbox" name="features" value="Troubleshooting"> Issue Resolution & Escalation<br>
+            <input type="checkbox" name="features" value="Upselling"> Upselling Services (late checkout, transport, etc.)<br>
+            
+            <label>When would you like to start with Viste AI?</label>
+            <select name="startDate">
+                <option value="Immediately">Immediately</option>
+                <option value="Within 1 month">Within 1 month</option>
+                <option value="Just Exploring">Just Exploring Options</option>
+            </select>
+
+            <label>Would you like a quick demo call?</label>
+            <select name="demoCall">
+                <option value="Yes">Yes, send me the link</option>
+                <option value="No">No, I prefer to explore by myself</option>
+            </select>
+
+            <label>Any additional comments?</label>
+            <textarea name="comments"></textarea>
+
+            <button type="submit">Submit Registration</button>
+
+        </form>
+
+        <div id="responseMessage"></div>
     </div>
-  );
-}
+
+    <script>
+        document.getElementById("hostForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+            let data = {};
+            formData.forEach((value, key) => { data[key] = value; });
+
+            fetch("https://script.google.com/macros/s/AKfycbzXDOW4m3H_vuluBkuKRDYjh69cNUvP4MUASJXRC_d-UfcsL_QGfNCz3USbGdl8obI7sw/exec", {
+                method: "POST",
+                body: JSON.stringify(data),
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("responseMessage").innerHTML = "<p>✅ Thank you for registering! We will be in touch soon.</p>";
+                document.getElementById("hostForm").reset();
+            })
+            .catch(error => {
+                document.getElementById("responseMessage").innerHTML = "<p>❌ Error submitting form. Please try again.</p>";
+                console.error("Error:", error);
+            });
+        });
+    </script>
+
+</body>
+</html>
