@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useCallback } from 'react';
 
 interface FormData {
     fullName: string;
@@ -14,7 +14,7 @@ interface FormData {
 
 export default function HostRegistration() {
     //const depId = `AKfycbxw241LPAP71lWbgkZnVxPOTDcGbgvZZOlyFet6JwoNCrJuilZA3RUqAthTJmilmNEaJQ`;
-    const depUrl = `https://script.google.com/macros/s/AKfycbxw241LPAP71lWbgkZnVxPOTDcGbgvZZOlyFet6JwoNCrJuilZA3RUqAthTJmilmNEaJQ/exec`;
+    const depUrl = `https://script.google.com/macros/s/AKfycbxsTOOgIw-CZHCqOgO2QKuMERgXZ0oNDbF9NoNDAD5eemfcMMjEDIXHZQP5nAHEWwVAJg/exec`;
     //const oldDepUrl = `https://script.google.com/macros/s/AKfycbzg92d2dUIIX1IhLtQgFCM-qjZTZc9elqamgaGUSKKuMpOFMQCe6hAh0wt4GkmKx0g/exec`;
     const [formData, setFormData] = useState<FormData>({
         fullName: '',
@@ -26,10 +26,13 @@ export default function HostRegistration() {
         otherCM: ''
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-    };
+    const handleChange = useCallback(
+        (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+            const { name, value } = e.target;
+            setFormData(prev => ({ ...prev, [name]: value }));
+        },
+        []
+    );
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -37,10 +40,17 @@ export default function HostRegistration() {
             const response = await fetch(depUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
+                mode: "no-cors",
+                body: JSON.stringify(formData),
             });
-            await response.json();
-            alert('Thank you for registering! 🎉');
+    
+            if (!response.ok) {
+                throw new Error(`HTTP Error! Status: ${response.status}`);
+            }
+    
+            const result = await response.json(); // Ensure JSON parsing is safe
+            alert(result.message || 'Thank you for registering! 🎉');
+    
             setFormData({
                 fullName: '',
                 email: '',
@@ -48,10 +58,11 @@ export default function HostRegistration() {
                 location: '',
                 properties: '1-5',
                 channelManager: 'Icnea',
-                otherCM: ''
+                otherCM: '',
             });
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error submitting form:', error);
+            alert('Something went wrong. Please try again.');
         }
     };
 
