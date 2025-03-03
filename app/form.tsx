@@ -13,9 +13,6 @@ interface FormData {
 }
 
 export default function HostRegistration() {
-    //const depId = `AKfycbxw241LPAP71lWbgkZnVxPOTDcGbgvZZOlyFet6JwoNCrJuilZA3RUqAthTJmilmNEaJQ`;
-    const depUrl = `https://script.google.com/macros/s/AKfycbxw241LPAP71lWbgkZnVxPOTDcGbgvZZOlyFet6JwoNCrJuilZA3RUqAthTJmilmNEaJQ/exec`;
-    //const oldDepUrl = `https://script.google.com/macros/s/AKfycbzg92d2dUIIX1IhLtQgFCM-qjZTZc9elqamgaGUSKKuMpOFMQCe6hAh0wt4GkmKx0g/exec`;
     const [formData, setFormData] = useState<FormData>({
         fullName: '',
         email: '',
@@ -34,7 +31,7 @@ export default function HostRegistration() {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         try {
-            const response = await fetch(depUrl, {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbzg92d2dUIIX1IhLtQgFCM-qjZTZc9elqamgaGUSKKuMpOFMQCe6hAh0wt4GkmKx0g/exec', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
