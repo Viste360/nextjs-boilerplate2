@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, FormEvent, useCallback } from 'react';
+import { useState, FormEvent } from 'react';
 
 interface FormData {
     fullName: string;
@@ -17,7 +17,7 @@ interface FormData {
 }
 
 export default function HostRegistration() {
-    const depUrl = `https://script.google.com/macros/s/AKfycbw8hQ320HXYcTxc8yHLj0GpXP4pq_sq3Cgta3dMIoeUhfAKLV7r9wznN6t17m54a-BiJQ/exec`; // Replace with your Google Apps Script URL
+    const depUrl = `https://script.google.com/macros/s/AKfycbwIcEP2cqAb6kgbXmr4yRs7qz0BiQ_y2MCbt4OgKx_Ugko1n_pXgQFEiDlS9Ogf6v3F9w/exec`; // Replace with your Web App URL
 
     const [formData, setFormData] = useState<FormData>({
         fullName: '',
@@ -33,20 +33,17 @@ export default function HostRegistration() {
         comments: ''
     });
 
-    const handleChange = useCallback(
-        (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-            const { name, value, type, checked } = e.target as HTMLInputElement;
-            if (type === 'checkbox') {
-                setFormData(prev => ({
-                    ...prev,
-                    features: checked ? [...prev.features, value] : prev.features.filter(f => f !== value)
-                }));
-            } else {
-                setFormData(prev => ({ ...prev, [name]: value }));
-            }
-        },
-        []
-    );
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+        const { name, value, type, checked } = e.target as HTMLInputElement;
+        if (type === 'checkbox') {
+            setFormData(prev => ({
+                ...prev,
+                features: checked ? [...prev.features, value] : prev.features.filter(f => f !== value)
+            }));
+        } else {
+            setFormData(prev => ({ ...prev, [name]: value }));
+        }
+    };
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -104,26 +101,6 @@ export default function HostRegistration() {
 
                 <label>WhatsApp Number:</label>
                 <input type="text" name="whatsapp" value={formData.whatsapp} onChange={handleChange} required className="w-full p-2 border rounded" />
-
-                <label>Location (City & Country):</label>
-                <input type="text" name="location" value={formData.location} onChange={handleChange} required className="w-full p-2 border rounded" />
-
-                <label>Number of Properties:</label>
-                <select name="properties" value={formData.properties} onChange={handleChange} className="w-full p-2 border rounded">
-                    {['1-5', '6-10', '11-20', '21-50', '51+'].map(option => <option key={option} value={option}>{option}</option>)}
-                </select>
-
-                <label>Channel Manager:</label>
-                <select name="channelManager" value={formData.channelManager} onChange={handleChange} className="w-full p-2 border rounded">
-                    {['Icnea', 'Guesty', 'Smoobu', 'Hostaway', 'Rentals United', 'Other'].map(option => <option key={option} value={option}>{option}</option>)}
-                </select>
-
-                <label>Features:</label>
-                {['Check-in & Check-out WhatsApp', 'AI FAQ Messaging', 'Troubleshooting', 'Upselling'].map(feature => (
-                    <label key={feature} className="block">
-                        <input type="checkbox" name="features" value={feature} onChange={handleChange} checked={formData.features.includes(feature)} /> {feature}
-                    </label>
-                ))}
 
                 <label>Comments:</label>
                 <textarea name="comments" value={formData.comments} onChange={handleChange} className="w-full p-2 border rounded"></textarea>
