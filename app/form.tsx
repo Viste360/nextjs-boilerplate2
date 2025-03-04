@@ -31,7 +31,7 @@ export default function HostRegistration() {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         try {
-            const response = await fetch('https://script.google.com/macros/s/AKfycbzg92d2dUIIX1IhLtQgFCM-qjZTZc9elqamgaGUSKKuMpOFMQCe6hAh0wt4GkmKx0g/exec', {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbw8hQ320HXYcTxc8yHLj0GpXP4pq_sq3Cgta3dMIoeUhfAKLV7r9wznN6t17m54a-BiJQ/exec', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
